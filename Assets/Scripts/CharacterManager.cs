@@ -3,13 +3,17 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     private static CharacterManager _instance;
-    public static CharacterManager Instance //외부에서 접근하기 위한
+
+    //외부에서 접근하기 위한
+    public static CharacterManager Instance
     {
         get 
         {
-            if (_instance == null)//null일 경우를 미리 방지
+            //null일 경우를 미리 방지
+            if (_instance == null)
             {
-                _instance = new GameObject("CharacterManager").AddComponent<CharacterManager>(); //캐릭터매니저를 새롭게 만듬
+                //캐릭터매니저를 새롭게 만듬
+                _instance = new GameObject("CharacterManager").AddComponent<CharacterManager>();
             }
             return _instance;
         }
