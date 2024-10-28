@@ -1,8 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCondition : MonoBehaviour
+public interface IDamagalbe
+{
+    void TakePhysicalDamage(int damage);
+}
+public class PlayerCondition : MonoBehaviour, IDamagalbe
 {
 
     public UICondition uICondition;
@@ -12,6 +17,8 @@ public class PlayerCondition : MonoBehaviour
     Condition stamina { get { return uICondition.stamina; } }
 
     public float noHungerHealthDecay;
+
+    public event Action onTakeDamage; //event를 사용해서 내부에서만 적용
 
     void Update()
     {
@@ -41,5 +48,11 @@ public class PlayerCondition : MonoBehaviour
     public void Die() 
     {
         Debug.Log("die");
+    }
+
+    public void TakePhysicalDamage(int damage)
+    {
+        health.Subtract(damage);
+        onTakeDamage();
     }
 }
