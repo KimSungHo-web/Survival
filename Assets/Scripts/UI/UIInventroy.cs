@@ -25,9 +25,10 @@ public class UIInventroy : MonoBehaviour
     private PlayerController contoller;
     private PlayerCondition condition;
 
-    ItemData selectItem;
+    ItemData selectedItem;
     int selectedItemIndex = 0;
 
+    int curEquipIndex;
     void Start()
     {
         contoller = CharacterManager.Instance.Player.controller;
@@ -159,39 +160,39 @@ public class UIInventroy : MonoBehaviour
     {
         if (slots[index].item == null) return;
 
-        selectItem =slots[index].item;
+        selectedItem =slots[index].item;
         selectedItemIndex = index;
 
-        selectedItemName.text=selectItem.displayName;
-        selectedItemDescription.text = selectItem.descripttion;
+        selectedItemName.text=selectedItem.displayName;
+        selectedItemDescription.text = selectedItem.descripttion;
 
         selectedStatName.text=string.Empty;
         selectedStatValue.text=string.Empty;
 
-        for (int i = 0; i < selectItem.consumables.Length; i++) 
+        for (int i = 0; i < selectedItem.consumables.Length; i++) 
         {
-            selectedStatName.text += selectItem.consumables[i].type.ToString()+"\n";
-            selectedStatValue.text += selectItem.consumables[i].value.ToString() + "\n";
+            selectedStatName.text += selectedItem.consumables[i].type.ToString()+"\n";
+            selectedStatValue.text += selectedItem.consumables[i].value.ToString() + "\n";
         }
-        useButton.SetActive(selectItem.type==ItemType.Consumable);
-        equipButton.SetActive(selectItem.type == ItemType.Equipable && !slots[index].equipped);
-        unequipButton.SetActive(selectItem.type ==ItemType.Equipable && slots[index].equipped);
+        useButton.SetActive(selectedItem.type==ItemType.Consumable);
+        equipButton.SetActive(selectedItem.type == ItemType.Equipable && !slots[index].equipped);
+        unequipButton.SetActive(selectedItem.type ==ItemType.Equipable && slots[index].equipped);
         dropButton.SetActive(true);
     }
 
     public void OnUseButton() 
     {
-        if (selectItem.type == ItemType.Consumable) 
+        if (selectedItem.type == ItemType.Consumable) 
         {
-            for (int i = 0; i < selectItem.consumables.Length; i++) 
+            for (int i = 0; i < selectedItem.consumables.Length; i++) 
             {
-                switch (selectItem.consumables[i].type) 
+                switch (selectedItem.consumables[i].type) 
                 {
                     case ConsumableType.Health:
-                        condition.Heal(selectItem.consumables[i].value);
+                        condition.Heal(selectedItem.consumables[i].value);
                         break;
                     case ConsumableType.Hunger:
-                        condition.Eat(selectItem.consumables[i].value);
+                        condition.Eat(selectedItem.consumables[i].value);
                         break;
                 }
             }
@@ -201,7 +202,7 @@ public class UIInventroy : MonoBehaviour
 
     public void OnDrop()
     {
-        ThrowItem(selectItem);
+        ThrowItem(selectedItem);
         RemoveSelecedItem();
     }
 
@@ -211,11 +212,42 @@ public class UIInventroy : MonoBehaviour
 
         if (slots[selectedItemIndex].quantity <= 0) 
         {
-            selectItem=null;
+            selectedItem=null;
             slots[selectedItemIndex].item = null;
             selectedItemIndex= -1;
             ClearSelcetedItemWindow();
         }
         UpdateUI();
+    }
+
+    public void OnEquipButton()
+    {
+        if (slots[curEquipIndex].equipped) 
+        {
+            UnEquip(curEquipIndex);
+        }
+        slots[selectedItemIndex].equipped = true;
+        curEquipIndex = selectedItemIndex;
+        CharacterManager.Instance.Player.equip.EquipNew(selectedItem);
+        UpdateUI();
+
+        SelectIgem(selectedItemIndex);
+    }
+
+    void UnEquip(int index) 
+    {
+        slots[index].equipped = false;
+        CharacterManager.Instance.Player.equip.UnEquip();
+        UpdateUI();
+
+        if (selectedItemIndex == index) 
+        {
+            SelectIgem(selectedItemIndex);
+        }
+    }
+
+    public void OnUnEquipButton() 
+    {
+        UnEquip(selectedItemIndex);
     }
 }
