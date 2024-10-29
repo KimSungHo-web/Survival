@@ -18,7 +18,7 @@ public class PlayerCondition : MonoBehaviour, IDamagalbe
 
     public float noHungerHealthDecay;
 
-    public event Action onTakeDamage; //event를 사용해서 내부에서만 적용
+    public event Action onTakeDamage;
 
     void Update()
     {
@@ -29,6 +29,7 @@ public class PlayerCondition : MonoBehaviour, IDamagalbe
         {
             health.Subtract(noHungerHealthDecay * Time.deltaTime);
         }
+
         if (health.curValue == 0f)
         {
             Die();
