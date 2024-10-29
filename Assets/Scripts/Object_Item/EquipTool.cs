@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipTool : Equip
@@ -9,7 +7,7 @@ public class EquipTool : Equip
     public float attackDistance;
     public float useStamina;
 
-    [Header("Combat")]
+    [Header("Resouce")]
     public bool doesGatherResouce;
 
     [Header("Combat")]
@@ -52,6 +50,11 @@ public class EquipTool : Equip
             if (doesGatherResouce && hit.collider.TryGetComponent(out Resource resource)) 
             {
                 resource.Gather(hit.point, hit.normal);
+            }
+
+            if (doesDealDamage && hit.collider.TryGetComponent(out IDamagalbe damagable))
+            {
+                damagable.TakePhysicalDamage(damage);
             }
         }
     }
