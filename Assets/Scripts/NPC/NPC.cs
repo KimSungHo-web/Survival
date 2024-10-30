@@ -55,6 +55,8 @@ public class NPC : MonoBehaviour , IDamagalbe
 
         playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.transform.position);
 
+        Debug.DrawRay(transform.position, (CharacterManager.Instance.transform.position - transform.position).normalized * detectDistance, Color.red);
+
         animator.SetBool("Moving", aistate != AIState.Idle);
 
         switch (aistate)
@@ -100,7 +102,7 @@ public class NPC : MonoBehaviour , IDamagalbe
             SetState(AIState.Idle);
             Invoke("WanderToNewLocation", Random.Range(minWanderWaitTime, maxWanderWaitTime));
         }
-        if (playerDistance < detectDistance) 
+        if (playerDistance < detectDistance && IsPlayerInFieldOfView()) 
         {
             SetState(AIState.Attacking);
         }
@@ -171,7 +173,6 @@ public class NPC : MonoBehaviour , IDamagalbe
     {
         Vector3 directionToPlayer = CharacterManager.Instance.Player.transform.position - transform.position;
         float angle = Vector3.Angle(transform.forward, directionToPlayer);
-        Debug.DrawLine(transform.position, CharacterManager.Instance.Player.transform.position, Color.red);
         return angle < fieldOfView * 0.5f;
     }
 
