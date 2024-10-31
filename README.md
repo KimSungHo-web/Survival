@@ -27,6 +27,7 @@ Q3. 숙련 9강 ~ 숙련 11강
 
 `Interaction` 기능의 구조와 핵심 로직을 분석해보세요.
 - //
+- 
 `Inventory` 기능의 구조와 핵심 로직을 분석해보세요.
 - slots: ItemSlot 배열로, 아이템 슬롯을 관리합니다. 아이템의 index와 inventory를 설정해 슬롯과 인벤토리를 연결합니다.
 - selectedItem 및 selectedItemIndex: 현재 선택된 아이템과 그 인덱스를 관리하는 변수입니다.
