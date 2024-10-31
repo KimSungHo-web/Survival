@@ -26,9 +26,10 @@ Q2. 숙련 4강 ~ 숙련 6강
 
 Q3. 숙련 9강 ~ 숙련 11강
 **분석 문제** : 분석한 내용을 직접 작성하고, 강의의 코드를 다시 한번 작성하며 복습해봅시다.
-- `Interaction` 기능의 구조와 핵심 로직을 분석해보세요.
-- `Inventory` 기능의 구조와 핵심 로직을 분석해보세요.
-slots: ItemSlot 배열로, 아이템 슬롯을 관리합니다. 아이템의 index와 inventory를 설정해 슬롯과 인벤토리를 연결합니다.
+`Interaction` 기능의 구조와 핵심 로직을 분석해보세요.
+- 
+`Inventory` 기능의 구조와 핵심 로직을 분석해보세요.
+- slots: ItemSlot 배열로, 아이템 슬롯을 관리합니다. 아이템의 index와 inventory를 설정해 슬롯과 인벤토리를 연결합니다.
 - selectedItem 및 selectedItemIndex: 현재 선택된 아이템과 그 인덱스를 관리하는 변수입니다.
 - inventoryWindow 및 관련 UI 요소: 인벤토리 창과 각 UI 텍스트 및 버튼 요소를 참조하여, 선택된 아이템의 정보를 보여주고, 버튼 활성화를 관리합니다.
 - PlayerController, PlayerCondition 참조: 플레이어의 상태와 인벤토리를 조작하는 데 사용됩니다.
