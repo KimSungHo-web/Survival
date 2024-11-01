@@ -28,20 +28,20 @@ Q3. 숙련 9강 ~ 숙련 11강
 `Interaction` 기능의 구조와 핵심 로직을 분석해보세요.
 
 <주요 변수>
-- cheackRate와 lastCheckTime: 상호작용할 수 있는 오브젝트를 탐지하는 빈도 설정(초 단위)
-- maxCheckDistance: 탐지할 수 있는 최대 거리
-- layerMask: 레이어 마스크ㅡ로 특정 레이어에 있는 오브젝트만 탐지
-- curIntractGameObject: 현재 상호작용할 수 있는 오브젝트
-- curInteracterable: 상호작용 인터페이스(IteamObject의 IInteractable 인터페이스)를 구현한 현재 오브젝트 참조
-- prompt text: 상호작용 프롬프트를 표시할 TextMeshProUGUI 텍스트
-- camera: 메인 카메라
+- 'cheackRate'와 'lastCheckTime': 상호작용할 수 있는 오브젝트를 탐지하는 빈도 설정(초 단위)
+- 'maxCheckDistance': 탐지할 수 있는 최대 거리
+- 'layerMask': 레이어 마스크ㅡ로 특정 레이어에 있는 오브젝트만 탐지
+- 'curIntractGameObject': 현재 상호작용할 수 있는 오브젝트
+- 'curInteracterable': 상호작용 인터페이스('IteamObject'의 'IInteractable' 인터페이스)를 구현한 현재 오브젝트 참조
+- 'prompt text': 상호작용 프롬프트를 표시할 'TextMeshProUGUI' 텍스트
+- 'camera': 메인 카메라
 
 <Start()메서드>
-- camera와 prompt text를 초기화
-- "Prompt text"라는 이름의 게임 오브젝트가 씬에 존재할 경우 텍스트 컴포넌트를 할당
+- 'camera'와 'prompt text'를 초기화
+- "'Prompt text'"라는 이름의 게임 오브젝트가 씬에 존재할 경우 텍스트 컴포넌트를 할당
 
 <Update()메서드>
-- checkRate 간격으로 
+- 'checkRate' 간격으로 
 <핵심로직>
 - 탐지 주기: checkRate에 따라 주기적으로 앞에 있는 상호작용 가능한 오브젝트 감지
 - 상호작용 프롬프트 표시: 오브젝트 탐지 시, 해당 오브젝트의 프롬프트 메시지를 화면에 표시
@@ -50,13 +50,13 @@ Q3. 숙련 9강 ~ 숙련 11강
 `Inventory` 기능의 구조와 핵심 로직을 분석해보세요.
 
 <주요 변수>
-- slots: ItemSlot 배열로, 아이템 슬롯을 관리합니다. 아이템의 index와 inventory를 설정해 슬롯과 인벤토리를 연결합니다.
-- selectedItem 및 selectedItemIndex: 현재 선택된 아이템과 그 인덱스를 관리하는 변수입니다.
-- inventoryWindow 및 관련 UI 요소: 인벤토리 창과 각 UI 텍스트 및 버튼 요소를 참조하여, 선택된 아이템의 정보를 보여주고, 버튼 활성화를 관리합니다.
-- PlayerController, PlayerCondition 참조: 플레이어의 상태와 인벤토리를 조작하는 데 사용됩니다.
+- 'slots': 'ItemSlot' 배열로, 아이템 슬롯을 관리합니다. 아이템의 'index'와 'inventory'를 설정해 슬롯과 인벤토리를 연결합니다.
+- 'selectedItem' 및 'selectedItemIndex': 현재 선택된 아이템과 그 인덱스를 관리하는 변수입니다.
+- 'inventoryWindow' 및 관련 UI 요소: 인벤토리 창과 각 UI 텍스트 및 버튼 요소를 참조하여, 선택된 아이템의 정보를 보여주고, 버튼 활성화를 관리합니다.
+- 'PlayerController', 'PlayerCondition' 참조: 플레이어의 상태와 인벤토리를 조작하는 데 사용됩니다.
 
 <핵심 로직>
-- 아이템 추가 및 스택 관리: AddItem 메서드는 스택 가능한 아이템을 먼저 찾고, 해당 슬롯이 가득 차지 않았을 때 아이템을 스택합니다. 빈 슬롯이 없을 경우 ThrowItem을 호출 해 현재 위치에 아이템을 생성하여 드롭합니다.
-- 장비 관리: OnEquipButton과 UnEquip은 플레이어가 한 번에 하나의 아이템만 장착할 수 있도록 보장합니다. 새로운 아이템을 장착하면 기존 장착 아이템을 해제하는 방식입니다.
-- UI 동적 업데이트: UpdateUI, SelectItem, ClearSelectedItemWindow 메서드는 아이템 사용, 장착, 또는 버림과 같은 변화가 발생할 때마다 UI를 자동으로 업데이트하여 사용자에게 현재 인벤토리 상태를 정확히 보여줍니다.
+- 아이템 추가 및 스택 관리: 'AddItem' 메서드는 스택 가능한 아이템을 먼저 찾고, 해당 슬롯이 가득 차지 않았을 때 아이템을 스택합니다. 빈 슬롯이 없을 경우 'ThrowItem'을 호출 해 현재 위치에 아이템을 생성하여 드롭합니다.
+- 장비 관리: 'OnEquipButton'과 'UnEquip'은 플레이어가 한 번에 하나의 아이템만 장착할 수 있도록 보장합니다. 새로운 아이템을 장착하면 기존 장착 아이템을 해제하는 방식입니다.
+- UI 동적 업데이트: 'UpdateUI', 'SelectItem', 'ClearSelectedItemWindow' 메서드는 아이템 사용, 장착, 또는 버림과 같은 변화가 발생할 때마다 UI를 자동으로 업데이트하여 사용자에게 현재 인벤토리 상태를 정확히 보여줍니다.
 
