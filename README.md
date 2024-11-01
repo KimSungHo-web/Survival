@@ -43,9 +43,9 @@ Q3. 숙련 9강 ~ 숙련 11강
 <Update()메서드>
 - 'checkRate' 간격으로 실행, 플레이어 앞에 상호작용 가능한 오브젝트가 있으면 감지
 - 카메라의 중앙에 Raycast를 쏘아 감지하고,Physics.Raycast()를 이용해 maxCheckDistance 안에 있는 상호작용 가능한 오브젝트를 찾음
-- 탐지된 오브젝트가 curIntractGameObject와 다른 우
- >curIntractGameObject와 curIntratable을 갱신하고 SetPromptText()로 프롬프트를 표시함
->
+- 탐지된 오브젝트가 curIntractGameObject와 다른 경우
+> `curIntractGameObject`와 `curIntratable`을 갱신하고 `SetPromptText()`로 프롬프트를 표시함
+- 오브젝트가 감지되지 않으면 `curIntractable`과 `curIntractGameObject`룰 null로 설정하고 promptText를 비활성화함
 
 <핵심로직>
 - 탐지 주기: checkRate에 따라 주기적으로 앞에 있는 상호작용 가능한 오브젝트 감지
