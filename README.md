@@ -33,7 +33,14 @@ Q3. 숙련 9강 ~ 숙련 11강
 - curInteracterable: 상호작용 인터페이스(IteamObject의 IInteractable 인터페이스)를 구현한 현재 오브젝트 참조
 - prompt text: 상호작용 프롬프트를 표시할 TextMeshProUGUI 텍스트
 - camera: 메인 카메라
-핵심로직
+
+<Start()메서드>
+- camera와 prompt text를 초기화
+- "Prompt text"라는 이름의 게임 오브젝트가 씬에 존재할 경우 텍스트 컴포넌트를 할당
+
+<Update()메서드>
+  
+<핵심로직>
 - 탐지 주기: checkRate에 따라 주기적으로 앞에 있는 상호작용 가능한 오브젝트 감지
 - 상호작용 프롬프트 표시: 오브젝트 탐지 시, 해당 오브젝트의 프롬프트 메시지를 화면에 표시
 - 상호작용: 상호작용 입력시 인터페이스를 통해 상호작용 메서드를 호출하여 로직 수행 후 초기화
