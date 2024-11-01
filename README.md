@@ -29,21 +29,21 @@ Q3. 숙련 9강 ~ 숙련 11강
 
 <주요 변수>
 - `cheackRate`와 'lastCheckTime': 상호작용할 수 있는 오브젝트를 탐지하는 빈도 설정(초 단위)
-- 'maxCheckDistance': 탐지할 수 있는 최대 거리
-- 'layerMask': 레이어 마스크ㅡ로 특정 레이어에 있는 오브젝트만 탐지
-- 'curIntractGameObject': 현재 상호작용할 수 있는 오브젝트
-- 'curInteracterable': 상호작용 인터페이스('IteamObject'의 'IInteractable' 인터페이스)를 구현한 현재 오브젝트 참조
-- 'prompt text': 상호작용 프롬프트를 표시할 'TextMeshProUGUI' 텍스트
-- 'camera': 메인 카메라
+- `maxCheckDistance`: 탐지할 수 있는 최대 거리
+- `layerMask`: 레이어 마스크ㅡ로 특정 레이어에 있는 오브젝트만 탐지
+- `curIntractGameObject`: 현재 상호작용할 수 있는 오브젝트
+- `curInteracterable`: 상호작용 인터페이스(`IteamObject`의 `IInteractable` 인터페이스)를 구현한 현재 오브젝트 참조
+- `prompt text`: 상호작용 프롬프트를 표시할 `TextMeshProUGUI` 텍스트
+- `camera`: 메인 카메라
 
 <Start()메서드>
-- 'camera'와 'prompt text'를 초기화
+- `camera`와 `prompt text`를 초기화
 - "'Prompt text'"라는 이름의 게임 오브젝트가 씬에 존재할 경우 텍스트 컴포넌트를 할당
 
 <Update()메서드>
 - 'checkRate' 간격으로 실행, 플레이어 앞에 상호작용 가능한 오브젝트가 있으면 감지
-- 카메라의 중앙에 Raycast를 쏘아 감지하고,Physics.Raycast()를 이용해 maxCheckDistance 안에 있는 상호작용 가능한 오브젝트를 찾음
-- 탐지된 오브젝트가 curIntractGameObject와 다른 경우
+- 카메라의 중앙에 `Raycast`를 쏘아 감지하고,`Physics.Raycast()`를 이용해 `maxCheckDistance` 안에 있는 상호작용 가능한 오브젝트를 찾음
+- !탐지된 오브젝트가 `curIntractGameObject`와 다른 경우
 > `curIntractGameObject`와 `curIntratable`을 갱신하고 `SetPromptText()`로 프롬프트를 표시함
 - 오브젝트가 감지되지 않으면 `curIntractable`과 `curIntractGameObject`룰 null로 설정하고 promptText를 비활성화함
 
