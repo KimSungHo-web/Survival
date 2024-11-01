@@ -28,7 +28,7 @@ Q3. 숙련 9강 ~ 숙련 11강
 `Interaction` 기능의 구조와 핵심 로직을 분석해보세요.
 
 <주요 변수>
-- 'cheackRate'와 'lastCheckTime': 상호작용할 수 있는 오브젝트를 탐지하는 빈도 설정(초 단위)
+- `cheackRate`와 'lastCheckTime': 상호작용할 수 있는 오브젝트를 탐지하는 빈도 설정(초 단위)
 - 'maxCheckDistance': 탐지할 수 있는 최대 거리
 - 'layerMask': 레이어 마스크ㅡ로 특정 레이어에 있는 오브젝트만 탐지
 - 'curIntractGameObject': 현재 상호작용할 수 있는 오브젝트
