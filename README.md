@@ -70,3 +70,24 @@
 - 장비 관리: 'OnEquipButton'과 'UnEquip'은 플레이어가 한 번에 하나의 아이템만 장착할 수 있도록 보장합니다. 새로운 아이템을 장착하면 기존 장착 아이템을 해제하는 방식입니다.
 - UI 동적 업데이트: 'UpdateUI', 'SelectItem', 'ClearSelectedItemWindow' 메서드는 아이템 사용, 장착, 또는 버림과 같은 변화가 발생할 때마다 UI를 자동으로 업데이트하여 사용자에게 현재 인벤토리 상태를 정확히 보여줍니다.
 
+### Q1. 숙련 12강 ~ 숙련 14강
+
+### [요구사항 1]
+
+**분석 문제** : 분석한 내용을 직접 작성하고, 강의의 코드를 다시 한번 작성하며 복습해봅시다.
+
+### - Equipment와 EquipTool 기능의 구조와 핵심 로직을 분석해보세요.
+
+분석 :
+
+핵심 로직 분석(Equipment, EquipTool )
+
+-EquipTool
+     - public override void OnAttackInput()
+	- Equip에서 OnAttackInput()을 virtual로 선언하여 자식인 EquipTool에서 override함
+	- 우선 공격중이 아닌지를 확인하고, 캐릭터 매니저 싱글톤에 플레이어 컨디션 UseStamina()를 확인합니다.
+	- UseStamina() 값은 미리 지정한 useStamina의 값을 넣어주며 attacking을 참으로 변경, Attack이라는 애니메이션트리거를 작동, OnCanAttack을 attackRate만큼 지연시키기위해 Invoke를 사용합니다.
+
+     - Onhit()
+	-
+ ----
